@@ -1,6 +1,6 @@
 # Notation
 
-All simulations default to dimensionless Lennard-Jones reduced units ($\sigma = 1$, $\varepsilon = 1$, $m = 1$, $k_B = 1$). Physical SI conversions for liquid Argon ($\sigma = 3.405\,\text{\AA}$, $\varepsilon / k_B = 119.8\text{ K}$, $m = 39.948\text{ u}$, $\tau = \sqrt{m\sigma^2/\varepsilon} = 2.156\text{ ps}$) are provided in `engsim.units`.
+All simulations default to dimensionless Lennard-Jones reduced units ($\sigma = 1$, $\varepsilon = 1$, $m = 1$, $k_B = 1$). Physical SI conversions for liquid Argon ($\sigma = 3.405\text{ Å}$, $\varepsilon / k_B = 119.8\text{ K}$, $m = 39.948\text{ u}$, $\tau = \sqrt{m\sigma^2/\varepsilon} = 2.156\text{ ps}$) are provided in `engsim.units`.
 
 | Symbol | Meaning | Reduced Unit |
 | :--- | :--- | :--- |

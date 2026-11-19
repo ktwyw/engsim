@@ -2,7 +2,7 @@
 
 # Molecular simulation from scratch in Python
 
-**An open book of 16 executed Jupyter notebooks on molecular dynamics and Monte Carlo simulation, with a pure-NumPy package; every result checked against exact statistical mechanics and LAMMPS.**
+**An open book of 16 chapters (32 executed Jupyter notebooks with solutions) on molecular dynamics and Monte Carlo simulation, with a pure-NumPy package; every result checked against exact statistical mechanics and LAMMPS.**
 
 [![tests](https://github.com/ktwyw/engsim/actions/workflows/tests.yml/badge.svg)](https://github.com/ktwyw/engsim/actions/workflows/tests.yml)
 [![book](https://github.com/ktwyw/engsim/actions/workflows/book.yml/badge.svg)](https://ktwyw.github.io/engsim/)
@@ -58,12 +58,12 @@ Production molecular simulation codes such as LAMMPS are powerful research tools
 | Ch 3 · $O(N)$ Linked-Cell vs $O(N^2)$ forces | `lj_forces_cell_list` ($N = 256$) | Exact `lj_forces_all_pairs` | $< 10^{-12}$ |
 | Ch 3 · Verlet neighbor-list force parity | `VerletNeighborList.forces` ($r_s = 0.35$) | Exact `lj_forces_all_pairs` | $< 10^{-12}$ |
 | Ch 4 · Equipartition & ideal-gas virial | `kinetic_energy_and_temp` & Clausius virial | $P = \rho T$ as $\rho \to 0$ | $< 5\%$ |
-| Ch 5 · Canonical $NVT$ kinetic variance | `bussi_csvr_thermostat` vs `berendsen_thermostat` | Exact $\operatorname{Var}(K) = \frac{3N-3}{2}T^2$ | exact vs collapsed |
+| Ch 5 · Canonical $NVT$ kinetic variance | `bussi_csvr_thermostat` vs `berendsen_thermostat` | Exact $\mathrm{Var}(K) = \frac{3N-3}{2}T^2$ | exact vs collapsed |
 | Ch 6 · BAOAB Langevin harmonic variance | `baoab_langevin_step` at large $\Delta t = 0.25$ | Exact $\langle x^2 \rangle = k_B T / k = 1.0$ | $< 8\%$ |
 | Ch 7 · Nosé–Hoover Chain-2 ergodicity | `nose_hoover_chain2_1d_step` on 1D HO | Exact Gaussian $\langle x^2 \rangle = 1, \langle x^4 \rangle = 3$ | restored |
 | Ch 8 · Ideal-gas $NPT$ barostat EOS | `berendsen_barostat_scale` + CSVR | Exact $\langle \rho \rangle = P_0 / T_0 = 0.25$ | $< 10\%$ |
 | Ch 9 · $O(N)$ MC $\Delta U$ vs full $O(N^2)$ | `lj_single_particle_energy` | Exact $U_{\text{after}} - U_{\text{before}}$ | $< 10^{-11}$ |
-| Ch 10 · Ideal-gas Grand Canonical MC | $\mu VT$ insertion/deletion Markov chain | Exact Poisson $\operatorname{Var}(N) = \langle N \rangle = zV$ | $< 6\%$ |
+| Ch 10 · Ideal-gas Grand Canonical MC | $\mu VT$ insertion/deletion Markov chain | Exact Poisson $\mathrm{Var}(N) = \langle N \rangle = zV$ | $< 6\%$ |
 | Ch 11 · 2D Ising phase transition | `ising_2d_wolff_step` & `ising_2d_metropolis_sweep` | Onsager $T_c = 2/\ln(1+\sqrt{2}) = 2.269185$ | exact $E_{\text{gs}}=-2J$ |
 | Ch 12 · Widom insertion virial limit | `widom_excess_chemical_potential` | $\beta\mu_{\text{ex}} \to 2 B_2(T)\rho$ & Boyle $T_B^* \approx 3.42$ | verified |
 | Ch 13 · Einstein MSD vs Green–Kubo VACF | `compute_msd` & `autocorrelation_fft` | Exact Langevin $C_v(t) = 3Te^{-\gamma t}, D = T/\gamma$ | $< 12\%$ |
@@ -128,24 +128,24 @@ print(f"T* = {T_inst:.3f}, P* = {P_inst:.3f}, U/N = {u_pot/len(pos):.3f}")
 | :--- | :--- | :--- |
 | [1. Pair potentials, reduced units, and periodic boundary conditions](notebooks/part1_nve_md/01_potentials_and_pbc.ipynb) | LJ 12–6, LJTS ($r_c=2.5$), Argon SI units, FCC crystal builder, PBC & minimum-image convention | Central finite-difference $-\nabla U$, Newton's Third Law, PBC invariance |
 | [2. Time integration: Euler, Velocity Verlet, and symplectic shadow Hamiltonians](notebooks/part1_nve_md/02_velocity_verlet_integrators.ipynb) | Symplectic evolution, time-reversibility, $O(\Delta t^2)$ shadow Hamiltonian vs Euler energy drift | Exact $O(\Delta t^2)$ scaling, 50-step time reversal, harmonic shadow energy |
-| [3. Scaling to $O(N)$: linked-cell lists and Verlet neighbor lists](notebooks/part1_nve_md/03_cell_and_verlet_lists.ipynb) | 3D 13-offset half-shell linked cells, Verlet skin $r_v = r_c + r_s$, displacement-triggered rebuilds | Exact bit-for-bit force, energy, and virial parity with $O(N^2)$ pair loop |
-| [4. Structure and thermodynamics in $NVE$: equipartition, virial pressure, and $g(r)$](notebooks/part1_nve_md/04_nve_rdf_and_virial_pressure.ipynb) | Kinetic temperature, Clausius virial pressure, radial distribution function $g(r)$, Flyvbjerg–Petersen blocking | Ideal-gas $P=\rho T$ limit, liquid coordination number, white-noise block errors |
+| [3. Scaling to O(N): linked-cell lists and Verlet neighbor lists](notebooks/part1_nve_md/03_cell_and_verlet_lists.ipynb) | 3D 13-offset half-shell linked cells, Verlet skin $r_v = r_c + r_s$, displacement-triggered rebuilds | Exact bit-for-bit force, energy, and virial parity with $O(N^2)$ pair loop |
+| [4. Structure and thermodynamics in NVE: equipartition, virial pressure, and g(r)](notebooks/part1_nve_md/04_nve_rdf_and_virial_pressure.ipynb) | Kinetic temperature, Clausius virial pressure, radial distribution function $g(r)$, Flyvbjerg–Petersen blocking | Ideal-gas $P=\rho T$ limit, liquid coordination number, white-noise block errors |
 
 ### Part II · Ensembles, thermostats, and barostats ($NVT$ & $NPT$)
 
 | Chapter | Topics | Checked against |
 | :--- | :--- | :--- |
-| [5. Velocity rescaling, Berendsen, and Bussi–Donadio–Parrinello (CSVR) thermostats](notebooks/part2_ensembles/05_berendsen_and_bussi_csvr.ipynb) | Canonical $\chi^2_{\text{dof}}$ kinetic-energy distribution, Berendsen variance collapse, exact CSVR rescaling | Exact $\langle K \rangle$ and $\operatorname{Var}(K) = \frac{3N-3}{2}T^2$ |
+| [5. Velocity rescaling, Berendsen, and Bussi–Donadio–Parrinello (CSVR) thermostats](notebooks/part2_ensembles/05_berendsen_and_bussi_csvr.ipynb) | Canonical $\chi^2_{\text{dof}}$ kinetic-energy distribution, Berendsen variance collapse, exact CSVR rescaling | Exact $\langle K \rangle$ and $\mathrm{Var}(K) = \frac{3N-3}{2}T^2$ |
 | [6. Stochastic thermostats: Andersen and Langevin (BAOAB) dynamics](notebooks/part2_ensembles/06_andersen_and_langevin_baoab.ipynb) | Andersen collision bath, fluctuation–dissipation theorem, symmetric BAOAB Ornstein–Uhlenbeck splitting | Maxwell–Boltzmann speed density, BAOAB exact harmonic $\langle x^2 \rangle = k_BT/k$ |
 | [7. Deterministic extended-system thermostats: Nosé–Hoover and Nosé–Hoover chains](notebooks/part2_ensembles/07_nose_hoover_and_chains.ipynb) | Extended friction variable $\zeta$, invariant tori non-ergodicity, 2-chain NHC operator splitting | Exact Gaussian moments $\langle x^2 \rangle = 1$, $\langle x^4 \rangle = 3$, kurtosis $= 0$ |
-| [8. Constant-pressure simulation ($NPT$): Berendsen and isotropic barostats](notebooks/part2_ensembles/08_npt_barostats.ipynb) | Isotropic box scaling $L(t) = V(t)^{1/3}$, liquid-density equilibration, compressibility | Exact ideal-gas $NPT$ density $\rho = P_0 / T_0$ |
+| [8. Constant-pressure simulation (NPT): Berendsen and isotropic barostats](notebooks/part2_ensembles/08_npt_barostats.ipynb) | Isotropic box scaling $L(t) = V(t)^{1/3}$, liquid-density equilibration, compressibility | Exact ideal-gas $NPT$ density $\rho = P_0 / T_0$ |
 
 ### Part III · Monte Carlo simulation and free energy
 
 | Chapter | Topics | Checked against |
 | :--- | :--- | :--- |
-| [9. Metropolis Monte Carlo in the canonical ensemble ($NVT$-MC)](notebooks/part3_monte_carlo/09_metropolis_nvt_mc.ipynb) | Detailed balance, $O(N)$ single-particle $\Delta U$, step-size tuning, ergodic equivalence with $NVT$-MD | Exact $\Delta U$ vs full $O(N^2)$ recomputation, $\langle U/N \rangle$ and $g(r)$ parity with MD |
-| [10. Isothermal–isobaric ($NPT$-MC) and grand canonical ($\mu VT$-MC) ensembles](notebooks/part3_monte_carlo/10_npt_and_grand_canonical_mc.ipynb) | Insertion/deletion acceptance probabilities, particle-number fluctuations, Langmuir adsorption | Exact ideal-gas Poisson distribution $\operatorname{Var}(N) = \langle N \rangle = zV$ |
+| [9. Metropolis Monte Carlo in the canonical ensemble (NVT-MC)](notebooks/part3_monte_carlo/09_metropolis_nvt_mc.ipynb) | Detailed balance, $O(N)$ single-particle $\Delta U$, step-size tuning, ergodic equivalence with $NVT$-MD | Exact $\Delta U$ vs full $O(N^2)$ recomputation, $\langle U/N \rangle$ and $g(r)$ parity with MD |
+| [10. Isothermal–isobaric (NPT-MC) and grand canonical (μVT-MC) ensembles](notebooks/part3_monte_carlo/10_npt_and_grand_canonical_mc.ipynb) | Insertion/deletion acceptance probabilities, particle-number fluctuations, Langmuir adsorption | Exact ideal-gas Poisson distribution $\mathrm{Var}(N) = \langle N \rangle = zV$ |
 | [11. Lattice models and phase transitions: 2D Ising (Metropolis vs Wolff cluster)](notebooks/part3_monte_carlo/11_ising_metropolis_vs_wolff.ipynb) | Checkerboard vectorized Metropolis, critical slowing down, Wolff single-cluster flips | Onsager $T_c = 2/\ln(1+\sqrt{2})$, ground state $E/N = -2J$, Metropolis/Wolff parity |
 | [12. Free energy and chemical potential: Widom insertion and thermodynamic integration](notebooks/part3_monte_carlo/12_widom_and_free_energy.ipynb) | Ghost-particle insertion $\beta\mu_{\text{ex}} = -\ln\langle e^{-\beta\Delta U}\rangle$, second virial coefficient $B_2(T)$ | Exact low-density virial limit $2 B_2(T)\rho$ and LJ Boyle temperature $T_B^* \approx 3.42$ |
 
@@ -156,7 +156,7 @@ print(f"T* = {T_inst:.3f}, P* = {P_inst:.3f}, U/N = {u_pot/len(pos):.3f}")
 | [13. Self-diffusion: mean-squared displacement (Einstein) vs velocity autocorrelation (Green–Kubo)](notebooks/part4_transport_lammps/13_diffusion_msd_and_green_kubo.ipynb) | Unwrapped coordinates, ballistic $t^2$ vs diffusive $6Dt$ regimes, Wiener–Khinchin FFT VACF | Exact Langevin $C_v(t) = 3Te^{-\gamma t}$ and $D_{\text{MSD}} = D_{\text{GK}} = T/\gamma$ |
 | [14. Shear viscosity via Green–Kubo stress autocorrelation and Müller–Plathe RNEMD](notebooks/part4_transport_lammps/14_viscosity_gk_and_rnemd.ipynb) | Microscopic virial stress tensor $P_{xy}(t)$, Green–Kubo viscosity integral, momentum-swapping RNEMD | Central-force stress symmetry $S_{xy}=S_{yx}$ and exact RNEMD momentum/KE conservation |
 | [15. Polymer chains in simulation: Kremer–Grest FENE-WCA and CABS pore partitioning](notebooks/part4_transport_lammps/15_polymers_fene_and_confinement.ipynb) | FENE + WCA bead–spring chains, $\langle R_e^2 \rangle$, $\langle R_g^2 \rangle$, CABS slit-pore partitioning from one bulk sample | Exact $\langle R_e^2 \rangle = N b^2$, Casassa (1967) slit series, Brownian bridge $4/\sqrt{\pi}$ |
-| [16. Capstone: validating your Python engine against LAMMPS and Yeh–Hummer $1/L$ scaling](notebooks/part4_transport_lammps/16_capstone_lammps_benchmark.ipynb) | LAMMPS `in.ljts` deck generation, cutoff/thermostat matching, Yeh–Hummer $1/L$ finite-size diffusion scaling | Exact $1/L$ extrapolation to $D_\infty$, Argon SI diffusion conversion |
+| [16. Capstone: validating your Python engine against LAMMPS and Yeh–Hummer 1/L scaling](notebooks/part4_transport_lammps/16_capstone_lammps_benchmark.ipynb) | LAMMPS `in.ljts` deck generation, cutoff/thermostat matching, Yeh–Hummer $1/L$ finite-size diffusion scaling | Exact $1/L$ extrapolation to $D_\infty$, Argon SI diffusion conversion |
 
 Sample solutions: [Chapter 1](solutions/part1_nve_md/01_solutions.ipynb) · [2](solutions/part1_nve_md/02_solutions.ipynb) · [3](solutions/part1_nve_md/03_solutions.ipynb) · [4](solutions/part1_nve_md/04_solutions.ipynb) · [5](solutions/part2_ensembles/05_solutions.ipynb) · [6](solutions/part2_ensembles/06_solutions.ipynb) · [7](solutions/part2_ensembles/07_solutions.ipynb) · [8](solutions/part2_ensembles/08_solutions.ipynb) · [9](solutions/part3_monte_carlo/09_solutions.ipynb) · [10](solutions/part3_monte_carlo/10_solutions.ipynb) · [11](solutions/part3_monte_carlo/11_solutions.ipynb) · [12](solutions/part3_monte_carlo/12_solutions.ipynb) · [13](solutions/part4_transport_lammps/13_solutions.ipynb) · [14](solutions/part4_transport_lammps/14_solutions.ipynb) · [15](solutions/part4_transport_lammps/15_solutions.ipynb) · [16](solutions/part4_transport_lammps/16_solutions.ipynb)
 
