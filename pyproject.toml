@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "engsim"
+version = "0.1.0"
+description = "Molecular dynamics and Monte Carlo simulation from scratch in Python: an open book of 16 executed Jupyter notebooks with a compact NumPy package; every result checked."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Yanwei Wang" }
+]
+keywords = [
+    "molecular-dynamics",
+    "monte-carlo",
+    "statistical-mechanics",
+    "lennard-jones",
+    "thermostats",
+    "jupyter-book",
+    "python",
+]
+dependencies = [
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+book = [
+    "scipy>=1.10",
+    "matplotlib>=3.7",
+    "sympy>=1.10",
+    "jupyterlab",
+    "nbconvert",
+    "ipykernel",
+]
+test = [
+    "pytest",
+    "scipy>=1.10",
+    "matplotlib>=3.7",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["engsim*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "tests"]
+addopts = "-q"

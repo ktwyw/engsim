@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this book or software, please cite it using the metadata below."
+title: "engsim: Molecular dynamics and Monte Carlo simulation from scratch in Python"
+version: 0.1.0
+date-released: 2026-11-19
+url: "https://github.com/ktwyw/engsim"
+repository-code: "https://github.com/ktwyw/engsim"
+license: MIT
+authors:
+  - family-names: Wang
+    given-names: Yanwei
+    orcid: "https://orcid.org/0000-0002-8488-9833"
+    affiliation: "School of Engineering and Digital Sciences, Nazarbayev University"
+keywords:
+  - molecular-dynamics
+  - monte-carlo
+  - statistical-mechanics
+  - lennard-jones
+  - thermostats
+  - polymer-physics
+  - python
+  - jupyter-book

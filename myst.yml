@@ -1,0 +1,76 @@
+# Jupyter Book 2 (mystmd) configuration
+version: 1
+project:
+  title: "Molecular simulation from scratch in Python"
+  description: "Molecular dynamics and Monte Carlo simulation from scratch in Python: an open book of 16 executed Jupyter notebooks with a compact NumPy package; every result checked."
+  keywords:
+    - molecular-dynamics
+    - monte-carlo
+    - statistical-mechanics
+    - lennard-jones
+    - thermostats
+    - polymer-physics
+    - python
+  authors:
+    - name: Yanwei Wang
+      orcid: 0000-0002-8488-9833
+      affiliation: School of Engineering and Digital Sciences, Nazarbayev University
+  github: https://github.com/ktwyw/engsim
+  license:
+    content: CC-BY-4.0
+    code: MIT
+  exclude:
+    - README.md
+    - DATA_LICENSE.md
+    - CHANGELOG.md
+    - _build/**
+  toc:
+    - file: docs/intro.md
+    - title: "Part I · Foundations and microcanonical MD (NVE)"
+      children:
+        - file: notebooks/part1_nve_md/01_potentials_and_pbc.ipynb
+        - file: notebooks/part1_nve_md/02_velocity_verlet_integrators.ipynb
+        - file: notebooks/part1_nve_md/03_cell_and_verlet_lists.ipynb
+        - file: notebooks/part1_nve_md/04_nve_rdf_and_virial_pressure.ipynb
+    - title: "Part II · Ensembles, thermostats, and barostats (NVT & NPT)"
+      children:
+        - file: notebooks/part2_ensembles/05_berendsen_and_bussi_csvr.ipynb
+        - file: notebooks/part2_ensembles/06_andersen_and_langevin_baoab.ipynb
+        - file: notebooks/part2_ensembles/07_nose_hoover_and_chains.ipynb
+        - file: notebooks/part2_ensembles/08_npt_barostats.ipynb
+    - title: "Part III · Monte Carlo simulation and free energy"
+      children:
+        - file: notebooks/part3_monte_carlo/09_metropolis_nvt_mc.ipynb
+        - file: notebooks/part3_monte_carlo/10_npt_and_grand_canonical_mc.ipynb
+        - file: notebooks/part3_monte_carlo/11_ising_metropolis_vs_wolff.ipynb
+        - file: notebooks/part3_monte_carlo/12_widom_and_free_energy.ipynb
+    - title: "Part IV · Transport, polymers, and bridging to LAMMPS"
+      children:
+        - file: notebooks/part4_transport_lammps/13_diffusion_msd_and_green_kubo.ipynb
+        - file: notebooks/part4_transport_lammps/14_viscosity_gk_and_rnemd.ipynb
+        - file: notebooks/part4_transport_lammps/15_polymers_fene_and_confinement.ipynb
+        - file: notebooks/part4_transport_lammps/16_capstone_lammps_benchmark.ipynb
+    - title: "Solutions to the exercises"
+      children:
+        - file: solutions/part1_nve_md/01_solutions.ipynb
+        - file: solutions/part1_nve_md/02_solutions.ipynb
+        - file: solutions/part1_nve_md/03_solutions.ipynb
+        - file: solutions/part1_nve_md/04_solutions.ipynb
+        - file: solutions/part2_ensembles/05_solutions.ipynb
+        - file: solutions/part2_ensembles/06_solutions.ipynb
+        - file: solutions/part2_ensembles/07_solutions.ipynb
+        - file: solutions/part2_ensembles/08_solutions.ipynb
+        - file: solutions/part3_monte_carlo/09_solutions.ipynb
+        - file: solutions/part3_monte_carlo/10_solutions.ipynb
+        - file: solutions/part3_monte_carlo/11_solutions.ipynb
+        - file: solutions/part3_monte_carlo/12_solutions.ipynb
+        - file: solutions/part4_transport_lammps/13_solutions.ipynb
+        - file: solutions/part4_transport_lammps/14_solutions.ipynb
+        - file: solutions/part4_transport_lammps/15_solutions.ipynb
+        - file: solutions/part4_transport_lammps/16_solutions.ipynb
+    - file: docs/notation.md
+    - file: docs/references.md
+site:
+  template: book-theme
+  options:
+    logo_text: "Molecular simulation from scratch"
